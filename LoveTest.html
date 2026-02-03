@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Be My Valentine 💖</title>
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #ffc0cb, #fff);
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .container {
+            text-align: center;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            width: 360px;
+            z-index: 1;
+        }
+
+        h1 {
+            color: #ff4d6d;
+            margin-bottom: 30px;
+        }
+
+        .buttons {
+            position: relative;
+            height: 120px;
+        }
+
+        button {
+            padding: 12px 25px;
+            font-size: 18px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        #yes {
+            background-color: #ff4d6d;
+            color: white;
+        }
+
+        #yes:hover {
+            background-color: #e63950;
+        }
+
+        #no {
+            background-color: #f1f1f1;
+            color: #333;
+            position: absolute;
+            left: 200px;
+            top: 0;
+        }
+
+        .result {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .result img {
+            width: 250px;
+            border-radius: 15px;
+            margin-top: 15px;
+        }
+
+        .result h2 {
+            color: #ff4d6d;
+        }
+
+        /* ===== POPUP STYLES ===== */
+
+        .overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(255, 192, 203, 0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 5;
+        }
+
+        .popup {
+            background: linear-gradient(135deg, #ff4d6d, #ff9aa2);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            width: 300px;
+            color: white;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            animation: pop 0.4s ease;
+        }
+
+        .popup h2 {
+            margin-bottom: 15px;
+        }
+
+        .popup button {
+            background: white;
+            color: #ff4d6d;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        @keyframes pop {
+            from {
+                transform: scale(0.7);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Will you be my Valentine? 💕</h1>
+
+    <div class="buttons">
+        <button id="yes">Yes 💖</button>
+        <button id="no">No 😒</button>
+    </div>
+
+    <div class="result" id="result">
+        <h2>Good choice ❤️</h2>
+        <img src="https://i.imgflip.com/4/4t0m5.jpg" alt="Good Choice Meme">
+    </div>
+</div>
+
+<!-- POPUP -->
+<div class="overlay" id="overlay">
+    <div class="popup">
+        <h2>Oops 😌❤️</h2>
+        <p>
+            You don’t really have a choice.<br>
+            You <b>have</b> to be my Valentine 💕
+        </p>
+        <button onclick="closePopup()">Okay 😍</button>
+    </div>
+</div>
+
+<script>
+    const noButton = document.getElementById("no");
+    const yesButton = document.getElementById("yes");
+    const result = document.getElementById("result");
+    const overlay = document.getElementById("overlay");
+
+    // Move No button on hover
+    noButton.addEventListener("mouseover", () => {
+        const x = Math.random() * 200;
+        const y = Math.random() * 80;
+        noButton.style.left = x + "px";
+        noButton.style.top = y + "px";
+    });
+
+    // Show popup if No clicked
+    noButton.addEventListener("click", () => {
+        overlay.style.display = "flex";
+    });
+
+    function closePopup() {
+        overlay.style.display = "none";
+    }
+
+    // Yes button result
+    yesButton.addEventListener("click", () => {
+        result.style.display = "block";
+    });
+</script>
+
+</body>
+</html>
